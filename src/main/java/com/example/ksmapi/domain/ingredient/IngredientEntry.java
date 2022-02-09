@@ -6,7 +6,9 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +16,7 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@IdClass(IngredientEntry.IngredientEntryId.class)
 public class IngredientEntry {
     @NotNull
     @Id
@@ -22,6 +25,7 @@ public class IngredientEntry {
     private int quantity;
     private double price;
     private String brand;
+    private LocalDate date;
 
     public int getPriceUnit(){
         int priceInt = (int) price;

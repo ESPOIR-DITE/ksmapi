@@ -1,14 +1,12 @@
-package com.example.ksmapi.repository.item;
+package com.example.ksmapi.service.item;
 
 import com.example.ksmapi.domain.sell.SellPrice;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.example.ksmapi.service.ServiceInterface;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Repository
-public interface SellPriceRepository extends JpaRepository<SellPrice,String> {
+public interface SellPriceService extends ServiceInterface<SellPrice,String> {
     List<SellPrice> findAllByBuyerTYpeIdAndDateOrderByPrice(String buyerTypeId, LocalDate date);
     List<SellPrice> findAllByBuyerTYpeIdAndIsActive(String buyerId,boolean isActive);
     List<SellPrice> findAllByItemIdAndIsActive(String buyerId,boolean isActive);

@@ -1,11 +1,8 @@
 package com.example.ksmapi.factory.item;
 
-import com.example.ksmapi.domain.item.SellPrice;
+import com.example.ksmapi.domain.sell.SellPrice;
 import com.example.ksmapi.util.GenericHelper;
-import lombok.*;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
 
 
 @Component

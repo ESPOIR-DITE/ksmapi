@@ -1,11 +1,11 @@
 package com.example.ksmapi.factory;
 
-import com.example.ksmapi.domain.Entry;
-import com.example.ksmapi.domain.GenericResponse;
+import com.example.ksmapi.domain.entry.Entry;
 import com.example.ksmapi.util.GenericHelper;
-import com.example.ksmapi.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class EntryFactory {
@@ -16,6 +16,15 @@ public class EntryFactory {
         this.genericHelper = genericHelper;
     }
 
+    public Entry getEntryObject(LocalDate date, double amount, String supplier){
+        if(amount==0.0&&supplier.equals("")) return null;
+        return Entry.builder()
+                .date(date)
+                .amount(amount)
+                .supplier(supplier)
+                .id(genericHelper.getId(EntryFactory.class))
+                .build();
+    }
     public Entry getEntry(Entry entry){
         if(entry.getAmount()==0.0&&entry.getSupplier().equals("")) return null;
         return Entry.builder()

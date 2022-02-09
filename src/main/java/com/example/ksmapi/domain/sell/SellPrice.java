@@ -1,4 +1,4 @@
-package com.example.ksmapi.domain.item;
+package com.example.ksmapi.domain.sell;
 
 import lombok.*;
 

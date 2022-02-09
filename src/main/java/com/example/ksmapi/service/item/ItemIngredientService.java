@@ -1,13 +1,11 @@
-package com.example.ksmapi.repository.item;
+package com.example.ksmapi.service.item;
 
 import com.example.ksmapi.domain.item.ItemIngredient;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.example.ksmapi.service.ServiceInterface;
 
 import java.util.List;
 
-@Repository
-public interface ItemIngredientRepository extends JpaRepository<ItemIngredient, String> {
+public interface ItemIngredientService extends ServiceInterface<ItemIngredient,String> {
     List<ItemIngredient> findAllByEntryId(String entryId);
     List<ItemIngredient> findAllByIngredientId(String entryId);
     List<ItemIngredient> findAllByOrderByQuantity();
