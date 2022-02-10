@@ -2,7 +2,6 @@ package com.example.ksmapi.domain.ingredient;
 
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,16 +15,17 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@IdClass(IngredientEntry.IngredientEntryId.class)
-public class IngredientEntry {
+@IdClass(IngredientTransaction.IngredientEntryId.class)
+public class IngredientTransaction {
     @NotNull
     @Id
-    private String entryId;
+    private String transactionId;
     private String ingredientId;
     private int quantity;
     private double price;
     private String brand;
     private LocalDate date;
+    private LocalDate expirationDate;
 
     public int getPriceUnit(){
         int priceInt = (int) price;

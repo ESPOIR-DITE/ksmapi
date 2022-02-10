@@ -1,6 +1,6 @@
 package com.example.ksmapi.service.ingredient.impl;
 
-import com.example.ksmapi.domain.ingredient.IngredientEntry;
+import com.example.ksmapi.domain.ingredient.IngredientTransaction;
 import com.example.ksmapi.repository.ingredient.IngredientEntryRepository;
 import com.example.ksmapi.service.ingredient.IngredientEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,48 +20,48 @@ public class IngredientEntryServiceImpl implements IngredientEntryService {
     }
 
     @Override
-    public IngredientEntry save(IngredientEntry ingredientEntry) {
-        return repository.save(ingredientEntry);
+    public IngredientTransaction save(IngredientTransaction ingredientTransaction) {
+        return repository.save(ingredientTransaction);
     }
 
     @Override
-    public IngredientEntry read(String id) {
-        Optional<IngredientEntry> ingredientEntry = repository.findById(id);
+    public IngredientTransaction read(String id) {
+        Optional<IngredientTransaction> ingredientEntry = repository.findById(id);
         return ingredientEntry.orElse(null);
     }
 
     @Override
     public Boolean delete(String id) {
-        IngredientEntry ingredientEntry = read(id);
-        if(ingredientEntry!=null){
-            repository.delete(ingredientEntry);
+        IngredientTransaction ingredientTransaction = read(id);
+        if(ingredientTransaction !=null){
+            repository.delete(ingredientTransaction);
             return true;
         }
         return false;
     }
 
     @Override
-    public List<IngredientEntry> readAll() {
+    public List<IngredientTransaction> readAll() {
         return repository.findAll();
     }
 
     @Override
-    public List<IngredientEntry> findAllByIngredientId(String ingredientId) {
+    public List<IngredientTransaction> findAllByIngredientId(String ingredientId) {
         return repository.findAllByIngredientId(ingredientId);
     }
 
     @Override
-    public List<IngredientEntry> findAllByEntryId(String entryId) {
+    public List<IngredientTransaction> findAllByEntryId(String entryId) {
         return repository.findAllByEntryId(entryId);
     }
 
     @Override
-    public List<IngredientEntry> findAllByDate(LocalDate localDate) {
+    public List<IngredientTransaction> findAllByDate(LocalDate localDate) {
         return repository.findAllByDate(localDate);
     }
 
     @Override
-    public List<IngredientEntry> findAllByOrderByDate() {
+    public List<IngredientTransaction> findAllByOrderByDate() {
         return repository.findAllByOrderByDate();
     }
 }

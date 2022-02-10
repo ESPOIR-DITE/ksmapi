@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 @Builder
@@ -12,10 +11,8 @@ import java.time.LocalDate;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Entry {
+public class TransactionType {
     @Id
     private String id;
-    private double amount;
-    private LocalDate date;
-    private String supplier;
+    private String name;
 }

@@ -1,7 +1,7 @@
 package com.example.ksmapi.service.entry.impl;
 
-import com.example.ksmapi.domain.entry.Entry;
-import com.example.ksmapi.factory.EntryFactory;
+import com.example.ksmapi.domain.entry.Transaction;
+import com.example.ksmapi.factory.entry.TransactionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -10,18 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class EntryServiceImplTest {
-    private EntryServiceImpl entryService;
-    private EntryFactory entryFactory;
+class TransactionServiceImplTest {
+    private TransactionServiceImpl entryService;
+    private TransactionFactory transactionFactory;
     @Autowired
-    public EntryServiceImplTest(EntryServiceImpl entryService, EntryFactory entryFactory) {
+    public TransactionServiceImplTest(TransactionServiceImpl entryService, TransactionFactory transactionFactory) {
         this.entryService = entryService;
-        this.entryFactory = entryFactory;
+        this.transactionFactory = transactionFactory;
     }
 
     @BeforeEach
@@ -31,7 +30,7 @@ class EntryServiceImplTest {
 
     @Test
     void save() {
-        Entry entry = entryService.save(entryFactory.getEntryObject(LocalDate.of(2021,06,20),4.30,"kaldit"));
+        Transaction entry = entryService.save(transactionFactory.getEntryObject(LocalDate.of(2021,06,20),4.30,"kaldit"));
         assertNotNull(entry);
     }
 

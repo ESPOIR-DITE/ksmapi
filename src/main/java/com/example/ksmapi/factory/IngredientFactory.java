@@ -26,4 +26,14 @@ public class IngredientFactory {
                 .quantityType(ingredient.getQuantityType())
                 .build();
     }
+    public Ingredient getIngredientObject(String name ,String description, String quantityType, String brand){
+        if(name.equals("")&&quantityType.equals("")) return null;
+        return Ingredient.builder()
+                .id(genericHelper.getId(IngredientFactory.class))
+                .brand(brand)
+                .description(description)
+                .name(name)
+                .quantityType(quantityType)
+                .build();
+    }
 }
