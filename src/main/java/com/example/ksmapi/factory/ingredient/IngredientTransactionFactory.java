@@ -8,27 +8,29 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class IngredientEntryFactory {
+public class IngredientTransactionFactory {
     private GenericHelper genericHelper;
     @Autowired
-    public IngredientEntryFactory(GenericHelper genericHelper) {
+    public IngredientTransactionFactory(GenericHelper genericHelper) {
         this.genericHelper = genericHelper;
     }
 
     public IngredientTransaction getIngredientEntryObject(IngredientTransaction ie){
         if(ie.getIngredientId().equals("")&&ie.getTransactionId().equals("")&&ie.getPrice()==0.0&&ie.getQuantity()==0) return null;
         return IngredientTransaction.builder()
-                .entryId(ie.getTransactionId())
+                .transactionId(ie.getTransactionId())
                 .ingredientId(ie.getIngredientId())
                 .brand(ie.getBrand())
                 .price(ie.getPrice())
                 .quantity(ie.getQuantity())
+                .date(ie.getDate())
+                .expirationDate(ie.getExpirationDate())
                 .build();
     }
     public IngredientTransaction getIngredientEntry(String entryId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
         if(ingredientId.equals("")&&entryId.equals("")&&price==0.0&&quantity==0) return null;
         return IngredientTransaction.builder()
-                .entryId(entryId)
+                .transactionId(entryId)
                 .ingredientId(ingredientId)
                 .brand(brand)
                 .price(price)

@@ -1,11 +1,10 @@
-package com.example.ksmapi.controller.entry.impl;
+package com.example.ksmapi.controller.item.impl;
 
 import com.example.ksmapi.controller.ControllerInterface;
 import com.example.ksmapi.controller.util.ResponseDeal;
-import com.example.ksmapi.domain.entry.Transaction;
-import com.example.ksmapi.domain.entry.TransactionType;
-import com.example.ksmapi.factory.entry.TransactionTypeFaculty;
-import com.example.ksmapi.service.entry.impl.TransactionTypeServiceImpl;
+import com.example.ksmapi.domain.item.BuyerType;
+import com.example.ksmapi.factory.item.BuyerTypeFactory;
+import com.example.ksmapi.service.item.impl.BuyerTypeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,40 +14,39 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ksm/transaction-type/")
-public class TransactionTypeControllerImpl implements ControllerInterface<TransactionType,String> {
-    private final TransactionTypeServiceImpl service;
-    private final TransactionTypeFaculty transactionTypeFaculty;
+@RequestMapping("/ksm/buyer-type/")
+public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, String> {
+    private final BuyerTypeFactory factory;
+    private final BuyerTypeServiceImpl service;
     private final ResponseDeal responseDeal;
 
     @Autowired
-    public TransactionTypeControllerImpl(ResponseDeal responseDeal, TransactionTypeServiceImpl service, TransactionTypeFaculty transactionTypeFaculty) {
+    public BuyerTypeControllerImpl(BuyerTypeFactory factory, BuyerTypeServiceImpl service, ResponseDeal responseDeal) {
+        this.factory = factory;
         this.service = service;
-        this.transactionTypeFaculty = transactionTypeFaculty;
         this.responseDeal = responseDeal;
     }
 
     @PostMapping("create")
     @Override
-    public ResponseEntity<TransactionType> save(@RequestBody TransactionType transactionType, HttpServletRequest request) {
-        TransactionType transactionType1 = transactionTypeFaculty.getTransactionType(transactionType.getName());
-        var result = service.save(transactionType1);
+    public ResponseEntity<BuyerType> save(@RequestBody BuyerType buyerType, HttpServletRequest request) {
+        var object = factory.getBuyer(buyerType);
+        var result = service.save(object);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @PostMapping("update")
     @Override
-    public ResponseEntity<TransactionType> update(@RequestBody TransactionType transactionType,HttpServletRequest request) {
-        var result = service.save(transactionType);
+    public ResponseEntity<BuyerType> update(@RequestBody BuyerType buyerType, HttpServletRequest request) {
+        var result = service.save(buyerType);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
-
     @GetMapping("read")
     @Override
-    public ResponseEntity<TransactionType> read(@RequestParam("id") String id, HttpServletRequest request) {
+    public ResponseEntity<BuyerType> read(@RequestParam("id") String id, HttpServletRequest request) {
         var result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
@@ -62,10 +60,9 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
-
     @GetMapping("reads")
     @Override
-    public ResponseEntity<List<TransactionType>> readAll(HttpServletRequest request) {
+    public ResponseEntity<List<BuyerType>> readAll(HttpServletRequest request) {
         var result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);

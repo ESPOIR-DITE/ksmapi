@@ -1,11 +1,10 @@
-package com.example.ksmapi.controller.entry.impl;
+package com.example.ksmapi.controller.ingedient.impl;
 
 import com.example.ksmapi.controller.ControllerInterface;
 import com.example.ksmapi.controller.util.ResponseDeal;
-import com.example.ksmapi.domain.entry.Transaction;
-import com.example.ksmapi.domain.entry.TransactionType;
-import com.example.ksmapi.factory.entry.TransactionTypeFaculty;
-import com.example.ksmapi.service.entry.impl.TransactionTypeServiceImpl;
+import com.example.ksmapi.domain.ingredient.Ingredient;
+import com.example.ksmapi.factory.IngredientFactory;
+import com.example.ksmapi.service.ingredient.impl.IngredientServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,45 +14,46 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ksm/transaction-type/")
-public class TransactionTypeControllerImpl implements ControllerInterface<TransactionType,String> {
-    private final TransactionTypeServiceImpl service;
-    private final TransactionTypeFaculty transactionTypeFaculty;
+@RequestMapping("/ksm/ingredient/")
+public class IngredientControllerImpl implements ControllerInterface<Ingredient,String> {
+    private final IngredientServiceImpl service;
+    private final IngredientFactory factory;
     private final ResponseDeal responseDeal;
 
     @Autowired
-    public TransactionTypeControllerImpl(ResponseDeal responseDeal, TransactionTypeServiceImpl service, TransactionTypeFaculty transactionTypeFaculty) {
+    public IngredientControllerImpl(IngredientServiceImpl service, IngredientFactory factory, ResponseDeal responseDeal) {
         this.service = service;
-        this.transactionTypeFaculty = transactionTypeFaculty;
+        this.factory = factory;
         this.responseDeal = responseDeal;
     }
 
     @PostMapping("create")
     @Override
-    public ResponseEntity<TransactionType> save(@RequestBody TransactionType transactionType, HttpServletRequest request) {
-        TransactionType transactionType1 = transactionTypeFaculty.getTransactionType(transactionType.getName());
-        var result = service.save(transactionType1);
-        if(result!=null)
-            return responseDeal.successful(result);
-        return responseDeal.fail();
-    }
-    @PostMapping("update")
-    @Override
-    public ResponseEntity<TransactionType> update(@RequestBody TransactionType transactionType,HttpServletRequest request) {
-        var result = service.save(transactionType);
+    public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient, HttpServletRequest request) {
+        Ingredient ingredient1 = factory.getIngredient(ingredient);
+        var result =  service.save(ingredient1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
 
+    @PostMapping("update")
+    @Override
+    public ResponseEntity<Ingredient> update(@RequestBody Ingredient ingredient, HttpServletRequest request) {
+        var result = service.save(ingredient);
+        if(result!=null)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
     @GetMapping("read")
     @Override
-    public ResponseEntity<TransactionType> read(@RequestParam("id") String id, HttpServletRequest request) {
+    public ResponseEntity<Ingredient> read(@RequestParam("id") String id, HttpServletRequest request) {
         var result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
@@ -62,10 +62,9 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
-
     @GetMapping("reads")
     @Override
-    public ResponseEntity<List<TransactionType>> readAll(HttpServletRequest request) {
+    public ResponseEntity<List<Ingredient>> readAll(HttpServletRequest request) {
         var result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);

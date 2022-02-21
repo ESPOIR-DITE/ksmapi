@@ -17,8 +17,8 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @IdClass(IngredientTransaction.IngredientEntryId.class)
 public class IngredientTransaction {
-    @NotNull
     @Id
+    private String entryId;
     private String transactionId;
     private String ingredientId;
     private int quantity;
@@ -27,10 +27,10 @@ public class IngredientTransaction {
     private LocalDate date;
     private LocalDate expirationDate;
 
-    public int getPriceUnit(){
-        int priceInt = (int) price;
-        return priceInt/quantity;
-    }
+//    public int getPriceUnit(){
+//        int priceInt = (int) price;
+//        return priceInt/quantity;
+//    }
     protected static class IngredientEntryId implements Serializable{
         private String entryId, ingredientId;
 

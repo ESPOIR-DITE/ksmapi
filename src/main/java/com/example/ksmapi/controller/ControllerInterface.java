@@ -1,11 +1,15 @@
 package com.example.ksmapi.controller;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 public interface ControllerInterface<T,t> {
-    T save(T t);
-    T update(T t);
-    T read(String id);
-    boolean delete(String id);
-    List<T> readAll();
+    ResponseEntity<T> save(T t, HttpServletRequest request);
+    ResponseEntity<T> update(T t, HttpServletRequest request);
+    ResponseEntity<T> read(String id, HttpServletRequest request);
+    ResponseEntity<Boolean> delete(String id, HttpServletRequest request);
+    ResponseEntity<List<T>> readAll(HttpServletRequest request);
+
 }

@@ -3,25 +3,25 @@ package com.example.ksmapi.api;
 import com.example.ksmapi.domain.entry.Transaction;
 import com.example.ksmapi.domain.entry.EntryIngredientPresentation;
 import com.example.ksmapi.domain.ingredient.IngredientTransaction;
-import com.example.ksmapi.factory.ingredient.IngredientEntryFactory;
+import com.example.ksmapi.factory.ingredient.IngredientTransactionFactory;
 import com.example.ksmapi.service.entry.impl.TransactionServiceImpl;
-import com.example.ksmapi.service.ingredient.impl.IngredientEntryServiceImpl;
+import com.example.ksmapi.service.ingredient.impl.IngredientTransactionServiceImpl;
 import com.example.ksmapi.service.ingredient.impl.IngredientServiceImpl;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EntryApi {
+public class TransactionApi {
     private final TransactionServiceImpl entryService;
-    private final IngredientEntryServiceImpl ingredientEntryService;
+    private final IngredientTransactionServiceImpl ingredientEntryService;
     private final IngredientServiceImpl ingredientService;
-    private final IngredientEntryFactory ingredientEntryFactory;
+    private final IngredientTransactionFactory ingredientTransactionFactory;
 
-    public EntryApi(TransactionServiceImpl entryService, IngredientEntryServiceImpl ingredientEntryService,
-                    IngredientServiceImpl ingredientService,IngredientEntryFactory ingredientEntryFactory) {
+    public TransactionApi(TransactionServiceImpl entryService, IngredientTransactionServiceImpl ingredientEntryService,
+                          IngredientServiceImpl ingredientService, IngredientTransactionFactory ingredientTransactionFactory) {
         this.entryService = entryService;
         this.ingredientEntryService = ingredientEntryService;
         this.ingredientService = ingredientService;
-        this.ingredientEntryFactory = ingredientEntryFactory;
+        this.ingredientTransactionFactory = ingredientTransactionFactory;
     }
 
     public boolean recordNewEntry(EntryIngredientPresentation presentation){
@@ -40,7 +40,7 @@ public class EntryApi {
          boolean result = false;
         try {
             for (EntryIngredientPresentation.StockIngredient ingredient : presentation.getIngredientEntry()) {
-                    IngredientTransaction ingredientTransaction = ingredientEntryFactory.getIngredientEntry(
+                    IngredientTransaction ingredientTransaction = ingredientTransactionFactory.getIngredientEntry(
                             entryId,
                             ingredient.getIngredient().getId()
                             , ingredient.getIngredientTransaction().getQuantity()

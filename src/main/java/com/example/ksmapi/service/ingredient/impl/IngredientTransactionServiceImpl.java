@@ -1,7 +1,7 @@
 package com.example.ksmapi.service.ingredient.impl;
 
 import com.example.ksmapi.domain.ingredient.IngredientTransaction;
-import com.example.ksmapi.repository.ingredient.IngredientEntryRepository;
+import com.example.ksmapi.repository.ingredient.IngredientTransactionRepository;
 import com.example.ksmapi.service.ingredient.IngredientEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IngredientEntryServiceImpl implements IngredientEntryService {
-    private final IngredientEntryRepository repository;
+public class IngredientTransactionServiceImpl implements IngredientEntryService {
+    private final IngredientTransactionRepository repository;
 
     @Autowired
-    public IngredientEntryServiceImpl(IngredientEntryRepository repository) {
+    public IngredientTransactionServiceImpl(IngredientTransactionRepository repository) {
         this.repository = repository;
     }
 

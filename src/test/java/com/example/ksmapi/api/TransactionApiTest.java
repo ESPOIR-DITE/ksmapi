@@ -6,7 +6,7 @@ import com.example.ksmapi.domain.ingredient.Ingredient;
 import com.example.ksmapi.domain.ingredient.IngredientTransaction;
 import com.example.ksmapi.factory.entry.TransactionFactory;
 import com.example.ksmapi.factory.IngredientFactory;
-import com.example.ksmapi.factory.ingredient.IngredientEntryFactory;
+import com.example.ksmapi.factory.ingredient.IngredientTransactionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,26 +21,26 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class TransactionApiTest {
-    private final EntryApi entryApi;
+    private final TransactionApi transactionApi;
     private TransactionFactory transactionFactory;
     private Transaction entry;
     private IngredientTransaction ingredientTransaction;
     private EntryIngredientPresentation.StockIngredient stockIngredient;
     private IngredientFactory ingredientFactory;
-    private IngredientEntryFactory ingredientEntryFactory;
+    private IngredientTransactionFactory ingredientTransactionFactory;
 
     @Autowired
-    public TransactionApiTest(EntryApi entryApi, TransactionFactory transactionFactory,
-                              IngredientFactory ingredientFactory, IngredientEntryFactory ingredientEntryFactory) {
-        this.entryApi = entryApi;
+    public TransactionApiTest(TransactionApi transactionApi, TransactionFactory transactionFactory,
+                              IngredientFactory ingredientFactory, IngredientTransactionFactory ingredientTransactionFactory) {
+        this.transactionApi = transactionApi;
         this.transactionFactory = transactionFactory;
         this.ingredientFactory = ingredientFactory;
-        this.ingredientEntryFactory = ingredientEntryFactory;
+        this.ingredientTransactionFactory = ingredientTransactionFactory;
     }
 
     @BeforeEach
     void setUp() {
-        ingredientTransaction = ingredientEntryFactory.getIngredientEntry("","",20,400,"bravo",LocalDate.now(),LocalDate.of(2022,06,20));
+        ingredientTransaction = ingredientTransactionFactory.getIngredientEntry("","",20,400,"bravo",LocalDate.now(),LocalDate.of(2022,06,20));
         Ingredient ingredient = ingredientFactory.getIngredientObject("chicken","iueei","984083","julia");
         entry = transactionFactory.getEntryObject(LocalDate.now(),3000,"espoir");
         stockIngredient = new EntryIngredientPresentation.StockIngredient(ingredient, ingredientTransaction);
@@ -52,7 +52,7 @@ class TransactionApiTest {
         ArrayList<EntryIngredientPresentation.StockIngredient> stockIngredients = new ArrayList<>();
         stockIngredients.add(stockIngredient);
         EntryIngredientPresentation eip = new EntryIngredientPresentation(entry,stockIngredients);
-        Boolean result = entryApi.recordNewEntry(eip);
+        Boolean result = transactionApi.recordNewEntry(eip);
         assertTrue(result);
     }
 

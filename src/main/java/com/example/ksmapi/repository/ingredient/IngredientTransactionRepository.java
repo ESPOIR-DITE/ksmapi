@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface IngredientEntryRepository extends JpaRepository<IngredientTransaction,String> {
+public interface IngredientTransactionRepository extends JpaRepository<IngredientTransaction,String> {
     List<IngredientTransaction> findAllByIngredientId(String ingredientId);
     List<IngredientTransaction> findAllByEntryId(String entryId);
     List<IngredientTransaction> findAllByDate(LocalDate localDate);

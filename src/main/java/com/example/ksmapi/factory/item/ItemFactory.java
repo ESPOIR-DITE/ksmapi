@@ -19,5 +19,14 @@ public class ItemFactory {
                 .description(item.getDescription())
                 .costPrice(item.getCostPrice()).build();
     }
+    public Item getItem(String name, double costPrice, String description){
+        if(costPrice==0.0 && name.equals("")) return null;
+        var result= Item.builder().id(genericHelper.getId(ItemFactory.class))
+                .name(name)
+                .description(description)
+                .costPrice(costPrice).build();
+        System.out.println(result);
+        return result;
+    }
 
 }

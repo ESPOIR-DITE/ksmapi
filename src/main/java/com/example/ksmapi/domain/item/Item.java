@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity
 @Builder
 @Getter
+@ToString
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Item {
