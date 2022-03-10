@@ -5,7 +5,7 @@ import com.example.ksmapi.domain.entry.EntryIngredientPresentation;
 import com.example.ksmapi.domain.ingredient.Ingredient;
 import com.example.ksmapi.domain.ingredient.IngredientTransaction;
 import com.example.ksmapi.factory.entry.TransactionFactory;
-import com.example.ksmapi.factory.IngredientFactory;
+import com.example.ksmapi.factory.ingredient.IngredientFactory;
 import com.example.ksmapi.factory.ingredient.IngredientTransactionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

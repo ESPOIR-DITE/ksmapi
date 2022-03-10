@@ -1,12 +1,10 @@
-package com.example.ksmapi.factory;
+package com.example.ksmapi.factory.ingredient;
 
 import com.example.ksmapi.domain.ingredient.Ingredient;
 import com.example.ksmapi.util.GenericHelper;
-import com.example.ksmapi.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 @Component
 public class IngredientFactory {
    private GenericHelper genericHelper;
