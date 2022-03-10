@@ -1,13 +1,13 @@
-#spring:
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#    database-platform: org.hibernate.dialect.PostgreSQLDialect
-#  datasource:
-#    url: "jdbc:postgresql://ec2-54-175-243-75.compute-1.amazonaws.com:5432/dcv6ga9btuv2ol"
-#    username: ypsswksknbnfce
-#    password: c6bf23100858e91823a4de47ce22156842d3d18b967cb84f36acbcec6f449957
-#    dbcp2:
-#      remove-abandoned-on-borrow: true
-#      remove-abandoned-timeout: 60
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: "jdbc:postgresql://ec2-184-73-243-101.compute-1.amazonaws.com:5432/d1i01haeo99mq9"
+    username: toysintatengjr
+    password: 470d783f6506f8cab19d577b58cff06b10e74c366c5471a6d3b4946fbd6b8ec2
+    dbcp2:
+      remove-abandoned-on-borrow: true
+      remove-abandoned-timeout: 60
