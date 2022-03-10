@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins="http://localhost:1338")
-@RequestMapping("kdm/sell-price/")
+@RequestMapping("ksm/sell-price/")
 public class SellPriceControllerImpl implements SellPriceController {
     private final SellPriceFactory factory;
     private final SellPriceService service;

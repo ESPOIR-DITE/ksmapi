@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 @RestController
 @CrossOrigin(origins="http://localhost:1338")
-@RequestMapping("kdm/item/")
+@RequestMapping("ksm/item/")
 public class ItemControllerImpl implements ItemController {
     private final ItemService itemService;
     private final ItemFactory itemFactory;

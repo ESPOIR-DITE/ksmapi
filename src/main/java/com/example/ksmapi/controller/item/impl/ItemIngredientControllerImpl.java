@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins="http://localhost:1338")
-@RequestMapping("kdm/item-ingredient/")
+@RequestMapping("ksm/item-ingredient/")
 public class ItemIngredientControllerImpl implements ItemIngredientController {
     private final ItemIngredientService service;
     private final ItemIngredientFactory factory;
