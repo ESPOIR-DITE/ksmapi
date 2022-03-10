@@ -47,12 +47,12 @@ public class SellPriceServiceImpl implements SellPriceService {
 
     @Override
     public List<SellPrice> findAllByBuyerTYpeIdAndDateOrderByPrice(String buyerTypeId, LocalDate date) {
-        return repository.findAllByBuyerTYpeIdAndDateOrderByPrice(buyerTypeId, date);
+        return repository.findAllByBuyerTypeIdAndDateOrderByPrice(buyerTypeId, date);
     }
 
     @Override
     public List<SellPrice> findAllByBuyerTYpeIdAndIsActive(String buyerTypeId, boolean isActive) {
-        return repository.findAllByBuyerTYpeIdAndIsActive(buyerTypeId, isActive);
+        return repository.findAllByBuyerTypeIdAndIsActive(buyerTypeId, isActive);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class SellPriceServiceImpl implements SellPriceService {
 
     @Override
     public List<SellPrice> findAllByItemIdAndBuyerTYpeId(String itemId, String buyerId) {
-        return null;
+        return repository.findAllByItemIdAndBuyerTypeId(itemId, buyerId);
     }
 }

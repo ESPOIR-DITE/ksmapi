@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("/ksm/transaction/")
 public class TransactionControllerImpl implements TransactionController {
 
@@ -35,7 +36,7 @@ public class TransactionControllerImpl implements TransactionController {
     public ResponseEntity<Transaction> save(@RequestBody Transaction transaction, HttpServletRequest request) {
 
         Transaction transaction1 = transactionFactory.getEntry(transaction);
-        var result = service.save(transaction1);
+        Transaction result = service.save(transaction1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -44,7 +45,7 @@ public class TransactionControllerImpl implements TransactionController {
     @PostMapping("update")
     @Override
     public ResponseEntity<Transaction> update(@RequestBody Transaction transaction, HttpServletRequest request) {
-        var result =  service.save(transaction);
+        Transaction result =  service.save(transaction);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -52,7 +53,7 @@ public class TransactionControllerImpl implements TransactionController {
     @GetMapping("read")
     @Override
     public ResponseEntity<Transaction> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        Transaction result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -60,15 +61,15 @@ public class TransactionControllerImpl implements TransactionController {
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<Transaction>> readAll(HttpServletRequest request) {
-        var result =  service.readAll();
+        List<Transaction> result =  service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -76,7 +77,7 @@ public class TransactionControllerImpl implements TransactionController {
     @GetMapping("read-all-by-date")
     @Override
     public ResponseEntity<List<Transaction>> readAllByDate(@RequestParam("date") LocalDate date, HttpServletRequest request) {
-        var result = service.readAllByDate(date);
+        List<Transaction> result = service.readAllByDate(date);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -84,7 +85,7 @@ public class TransactionControllerImpl implements TransactionController {
     @GetMapping("read-all-by-supplier")
     @Override
     public ResponseEntity<List<Transaction>> readAllBySupplier(@RequestParam("supplier") String supplier, HttpServletRequest request) {
-        var result = service.readAllBySupplier(supplier);
+        List<Transaction> result = service.readAllBySupplier(supplier);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -92,7 +93,7 @@ public class TransactionControllerImpl implements TransactionController {
     @GetMapping("read-all-by-transactionId")
     @Override
     public ResponseEntity<List<Transaction>> readAllByTransactionTypeId(@RequestParam("transactionId") String transactionId, HttpServletRequest request) {
-        var result = service.readAllByTransactionTypeId(transactionId);
+        List<Transaction> result = service.readAllByTransactionTypeId(transactionId);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

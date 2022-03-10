@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("/ksm/ingredient/")
+
 public class IngredientControllerImpl implements ControllerInterface<Ingredient,String> {
     private final IngredientServiceImpl service;
     private final IngredientFactory factory;
@@ -31,7 +33,7 @@ public class IngredientControllerImpl implements ControllerInterface<Ingredient,
     @Override
     public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient, HttpServletRequest request) {
         Ingredient ingredient1 = factory.getIngredient(ingredient);
-        var result =  service.save(ingredient1);
+        Ingredient result =  service.save(ingredient1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -40,7 +42,7 @@ public class IngredientControllerImpl implements ControllerInterface<Ingredient,
     @PostMapping("update")
     @Override
     public ResponseEntity<Ingredient> update(@RequestBody Ingredient ingredient, HttpServletRequest request) {
-        var result = service.save(ingredient);
+        Ingredient result = service.save(ingredient);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -48,7 +50,7 @@ public class IngredientControllerImpl implements ControllerInterface<Ingredient,
     @GetMapping("read")
     @Override
     public ResponseEntity<Ingredient> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        Ingredient result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -57,15 +59,15 @@ public class IngredientControllerImpl implements ControllerInterface<Ingredient,
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<Ingredient>> readAll(HttpServletRequest request) {
-        var result = service.readAll();
+        List<Ingredient> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

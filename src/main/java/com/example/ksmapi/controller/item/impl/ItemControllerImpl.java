@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("kdm/item/")
 public class ItemControllerImpl implements ItemController {
     private final ItemService itemService;
@@ -29,7 +30,7 @@ public class ItemControllerImpl implements ItemController {
     @PostMapping("create")
     @Override
     public ResponseEntity<Item> save(@RequestBody Item item, HttpServletRequest request) {
-        var result = itemService.save(itemFactory.getItem(item));
+        Item result = itemService.save(itemFactory.getItem(item));
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -37,7 +38,7 @@ public class ItemControllerImpl implements ItemController {
     @PostMapping("update")
     @Override
     public ResponseEntity<Item> update(@RequestBody Item item, HttpServletRequest request) {
-        var result = itemService.save(item);
+        Item result = itemService.save(item);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -45,7 +46,7 @@ public class ItemControllerImpl implements ItemController {
     @GetMapping("read")
     @Override
     public ResponseEntity<Item> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = itemService.read(id);
+        Item result = itemService.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -53,15 +54,15 @@ public class ItemControllerImpl implements ItemController {
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = itemService.delete(id);
-        if(result!=null)
+        boolean result = itemService.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<Item>> readAll(HttpServletRequest request) {
-        var result =itemService.readAll();
+        List<Item> result =itemService.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

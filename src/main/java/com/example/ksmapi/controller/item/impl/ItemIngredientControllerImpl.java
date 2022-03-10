@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("kdm/item-ingredient/")
 public class ItemIngredientControllerImpl implements ItemIngredientController {
     private final ItemIngredientService service;
@@ -29,8 +30,8 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @PostMapping("create")
     @Override
     public ResponseEntity<ItemIngredient> save(@RequestBody ItemIngredient itemIngredient, HttpServletRequest request) {
-        var itemIngredientObject = factory.getItemIngredient(itemIngredient);
-        var result = service.save(itemIngredientObject);
+        ItemIngredient itemIngredientObject = factory.getItemIngredient(itemIngredient);
+        ItemIngredient result = service.save(itemIngredientObject);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -38,7 +39,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @PostMapping("update")
     @Override
     public ResponseEntity<ItemIngredient> update(@RequestBody ItemIngredient itemIngredient, HttpServletRequest request) {
-        var result = service.save(itemIngredient);
+        ItemIngredient result = service.save(itemIngredient);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -46,7 +47,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @GetMapping("read")
     @Override
     public ResponseEntity<ItemIngredient> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        ItemIngredient result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -54,15 +55,15 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<ItemIngredient>> readAll(HttpServletRequest request) {
-        var result = service.readAll();
+        List<ItemIngredient> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -70,7 +71,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @GetMapping("find-all-by-entry-id")
     @Override
     public ResponseEntity<List<ItemIngredient>> findAllByEntryId(@RequestParam("entryId") String entryId, HttpServletRequest request) {
-        var result = service.findAllByEntryId(entryId);
+        List<ItemIngredient> result = service.findAllByEntryId(entryId);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -78,7 +79,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @GetMapping("find-all-by-ingredient-id")
     @Override
     public ResponseEntity<List<ItemIngredient>> findAllByIngredientId(@RequestParam("entryId") String entryId, HttpServletRequest request) {
-        var result = service.findAllByIngredientId(entryId);
+        List<ItemIngredient> result = service.findAllByIngredientId(entryId);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -87,7 +88,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @GetMapping("find-all-by-order-by-quantity")
     @Override
     public ResponseEntity<List<ItemIngredient>> findAllByOrderByQuantity(HttpServletRequest request) {
-        var result = service.findAllByOrderByQuantity();
+        List<ItemIngredient> result = service.findAllByOrderByQuantity();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

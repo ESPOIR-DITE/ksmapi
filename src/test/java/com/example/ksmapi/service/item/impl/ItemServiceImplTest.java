@@ -28,7 +28,7 @@ class ItemServiceImplTest {
     @Test
     void save() {
         Item item = itemFactory.getItem("Samsung",300,"x4");
-        var result = itemService.save(item);
+        Item result = itemService.save(item);
         System.out.println(result);
     }
 

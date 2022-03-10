@@ -1,4 +1,5 @@
 package com.example.ksmapi.factory.item;
+
 import com.example.ksmapi.domain.item.Item;
 import com.example.ksmapi.util.GenericHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ItemFactory {
     }
     public Item getItem(String name, double costPrice, String description){
         if(costPrice==0.0 && name.equals("")) return null;
-        var result= Item.builder().id(genericHelper.getId(ItemFactory.class))
+        Item result= Item.builder().id(genericHelper.getId(ItemFactory.class))
                 .name(name)
                 .description(description)
                 .costPrice(costPrice).build();

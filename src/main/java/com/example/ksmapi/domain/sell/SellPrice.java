@@ -16,7 +16,7 @@ public class SellPrice {
     @Id
     private String id;
     private String itemId;
-    private String buyerTYpeId;
+    private String buyerTypeId;
     private double price;
     private LocalDate date;
     private Boolean isActive;

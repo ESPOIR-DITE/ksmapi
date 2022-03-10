@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("/ksm/buyer-type/")
 public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, String> {
     private final BuyerTypeFactory factory;
@@ -30,8 +31,8 @@ public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, S
     @PostMapping("create")
     @Override
     public ResponseEntity<BuyerType> save(@RequestBody BuyerType buyerType, HttpServletRequest request) {
-        var object = factory.getBuyer(buyerType);
-        var result = service.save(object);
+        BuyerType object = factory.getBuyer(buyerType);
+        BuyerType result = service.save(object);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -39,7 +40,7 @@ public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, S
     @PostMapping("update")
     @Override
     public ResponseEntity<BuyerType> update(@RequestBody BuyerType buyerType, HttpServletRequest request) {
-        var result = service.save(buyerType);
+        BuyerType result = service.save(buyerType);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -47,7 +48,7 @@ public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, S
     @GetMapping("read")
     @Override
     public ResponseEntity<BuyerType> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        BuyerType result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -55,15 +56,15 @@ public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, S
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<BuyerType>> readAll(HttpServletRequest request) {
-        var result = service.readAll();
+        List<BuyerType> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

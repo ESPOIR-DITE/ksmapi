@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface SellPriceRepository extends JpaRepository<SellPrice,String> {
-    List<SellPrice> findAllByBuyerTYpeIdAndDateOrderByPrice(String buyerTypeId, LocalDate date);
-    List<SellPrice> findAllByBuyerTYpeIdAndIsActive(String buyerId,boolean isActive);
+    List<SellPrice> findAllByBuyerTypeIdAndDateOrderByPrice(String buyerTypeId, LocalDate date);
+    List<SellPrice> findAllByBuyerTypeIdAndIsActive(String buyerId,boolean isActive);
     List<SellPrice> findAllByItemIdAndIsActive(String buyerId,boolean isActive);
-    List<SellPrice> findAllByItemIdAndBuyerTYpeId(String itemId,String buyerId);
+    List<SellPrice> findAllByItemIdAndBuyerTypeId(String itemId,String buyerId);
 }

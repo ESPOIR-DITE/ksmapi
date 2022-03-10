@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("/ksm/ingredient-transaction/")
 public class IngredientTransactionControllerImpl implements IngredientTransactionController {
     private IngredientTransactionServiceImpl service;
@@ -30,8 +31,8 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @PostMapping("create")
     @Override
     public ResponseEntity<IngredientTransaction> save(@RequestBody IngredientTransaction ingredientTransaction, HttpServletRequest request) {
-        var ingredientTransaction1 = factory.getIngredientEntryObject(ingredientTransaction);
-        var result = service.save(ingredientTransaction1);
+        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntryObject(ingredientTransaction);
+        IngredientTransaction result = service.save(ingredientTransaction1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -40,7 +41,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @PostMapping("update")
     @Override
     public ResponseEntity<IngredientTransaction> update(@RequestBody IngredientTransaction ingredientTransaction, HttpServletRequest request) {
-        var result = service.save(ingredientTransaction);
+        IngredientTransaction result = service.save(ingredientTransaction);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -49,7 +50,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("read")
     @Override
     public ResponseEntity<IngredientTransaction> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        IngredientTransaction result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -58,8 +59,8 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
@@ -67,7 +68,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<IngredientTransaction>> readAll(HttpServletRequest request) {
-        var result = service.readAll();
+        List<IngredientTransaction> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -76,7 +77,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("reads-by-ingredient-id")
     @Override
     public ResponseEntity<List<IngredientTransaction>> findAllByIngredientId(@RequestParam("id") String ingredientId, HttpServletRequest request) {
-        var result = service.findAllByIngredientId(ingredientId);
+        List<IngredientTransaction> result = service.findAllByIngredientId(ingredientId);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -84,7 +85,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("reads-by-entry-id")
     @Override
     public ResponseEntity<List<IngredientTransaction>> findAllByEntryId(@RequestParam("id") String entryId, HttpServletRequest request) {
-        var result = service.findAllByEntryId(entryId);
+        List<IngredientTransaction> result = service.findAllByEntryId(entryId);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -93,7 +94,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("reads-by-date")
     @Override
     public ResponseEntity<List<IngredientTransaction>> findAllByDate(@RequestParam("date") LocalDate localDate, HttpServletRequest request) {
-        var result = service.findAllByDate(localDate);
+        List<IngredientTransaction> result = service.findAllByDate(localDate);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -101,7 +102,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     @GetMapping("reads-by-order-by-date")
     @Override
     public ResponseEntity<List<IngredientTransaction>> findAllByOrderByDate(HttpServletRequest request) {
-        var result = service.findAllByOrderByDate();
+        List<IngredientTransaction> result = service.findAllByOrderByDate();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

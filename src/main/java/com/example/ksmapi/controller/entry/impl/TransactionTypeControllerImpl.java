@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http://localhost:1338")
 @RequestMapping("/ksm/transaction-type/")
 public class TransactionTypeControllerImpl implements ControllerInterface<TransactionType,String> {
     private final TransactionTypeServiceImpl service;
@@ -32,7 +33,7 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
     @Override
     public ResponseEntity<TransactionType> save(@RequestBody TransactionType transactionType, HttpServletRequest request) {
         TransactionType transactionType1 = transactionTypeFaculty.getTransactionType(transactionType.getName());
-        var result = service.save(transactionType1);
+        TransactionType result = service.save(transactionType1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -40,7 +41,7 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
     @PostMapping("update")
     @Override
     public ResponseEntity<TransactionType> update(@RequestBody TransactionType transactionType,HttpServletRequest request) {
-        var result = service.save(transactionType);
+        TransactionType result = service.save(transactionType);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -49,7 +50,7 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
     @GetMapping("read")
     @Override
     public ResponseEntity<TransactionType> read(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.read(id);
+        TransactionType result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
@@ -57,8 +58,8 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        var result = service.delete(id);
-        if(result!=null)
+        boolean result = service.delete(id);
+        if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
@@ -66,7 +67,7 @@ public class TransactionTypeControllerImpl implements ControllerInterface<Transa
     @GetMapping("reads")
     @Override
     public ResponseEntity<List<TransactionType>> readAll(HttpServletRequest request) {
-        var result = service.readAll();
+        List<TransactionType> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

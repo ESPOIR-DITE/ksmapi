@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 public class SellPriceFactory {
     private GenericHelper genericHelper;
     public SellPrice getSellPrice(SellPrice sp){
-        if(sp.getPrice()==0.0&&sp.getBuyerTYpeId().equals("")&&sp.getItemId().equals("")) return null;
+        if(sp.getPrice()==0.0&&sp.getBuyerTypeId().equals("")&&sp.getItemId().equals("")) return null;
         return SellPrice.builder()
                 .id(genericHelper.getId(SellPriceFactory.class))
                 .price(sp.getPrice())
-                .buyerTYpeId(sp.getBuyerTYpeId())
+                .buyerTypeId(sp.getBuyerTypeId())
                 .date(sp.getDate())
                 .isActive(sp.getIsActive())
                 .itemId(sp.getItemId())
