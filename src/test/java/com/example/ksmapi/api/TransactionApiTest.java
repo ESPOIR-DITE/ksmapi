@@ -41,7 +41,7 @@ class TransactionApiTest {
     @BeforeEach
     void setUp() {
         ingredientTransaction = ingredientTransactionFactory.getIngredientEntry("","",20,400,"bravo",LocalDate.now(),LocalDate.of(2022,06,20));
-        Ingredient ingredient = ingredientFactory.getIngredientObject("chicken","iueei","984083","julia");
+        Ingredient ingredient = ingredientFactory.getIngredientObject("chicken","iueei","984083","julia",39);
         entry = transactionFactory.getEntryObject(LocalDate.now(),3000,"espoir");
         stockIngredient = new EntryIngredientPresentation.StockIngredient(ingredient, ingredientTransaction);
 

@@ -17,4 +17,5 @@ public class Ingredient {
     private String description;
     private String quantityType;
     private String brand;
+    private double price;
 }
