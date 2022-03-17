@@ -14,4 +14,5 @@ public interface IngredientTransactionRepository extends JpaRepository<Ingredien
     List<IngredientTransaction> findAllByDate(LocalDate localDate);
     List<IngredientTransaction> findAllByOrderByDate();
     List<IngredientTransaction> findAllByTransactionId(String transactionId);
+    IngredientTransaction findByTransactionIdAndIngredientId(String transactionId, String IngredientId);
 }

@@ -69,4 +69,14 @@ public class IngredientTransactionServiceImpl implements IngredientEntryService 
     public List<IngredientTransaction> findAllByTransactionId(String transactionId) {
         return repository.findAllByTransactionId(transactionId);
     }
+
+    @Override
+    public boolean deleteByTransactionIdAndIngredientId(String transactionId, String IngredientId) {
+        IngredientTransaction ingredientTransaction = repository.findByTransactionIdAndIngredientId(transactionId, IngredientId);
+        if(ingredientTransaction!=null){
+            repository.delete(ingredientTransaction);
+            return true;
+        }
+        return false;
+    }
 }

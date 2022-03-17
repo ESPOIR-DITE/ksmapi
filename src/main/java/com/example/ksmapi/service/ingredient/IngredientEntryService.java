@@ -12,4 +12,6 @@ public interface IngredientEntryService extends ServiceInterface<IngredientTrans
     List<IngredientTransaction> findAllByDate(LocalDate localDate);
     List<IngredientTransaction> findAllByOrderByDate();
     List<IngredientTransaction> findAllByTransactionId(String transactionId);
+    boolean deleteByTransactionIdAndIngredientId(String transactionId, String IngredientId);
+
 }

@@ -116,4 +116,12 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+    @GetMapping("delete-by-transactionId-ingredientId")
+    @Override
+    public ResponseEntity<Boolean> deleteByTransactionIdAndIngredientId(@RequestParam("transactionId")String transactionId,@RequestParam("ingredientId") String IngredientId, HttpServletRequest request) {
+        Boolean result = service.deleteByTransactionIdAndIngredientId(transactionId, IngredientId);
+        if(result)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
 }
