@@ -14,4 +14,5 @@ public interface IngredientTransactionController extends ControllerInterface<Ing
     ResponseEntity<List<IngredientTransaction>> findAllByEntryId(String entryId, HttpServletRequest request);
     ResponseEntity<List<IngredientTransaction>> findAllByDate(LocalDate localDate, HttpServletRequest request);
     ResponseEntity<List<IngredientTransaction>> findAllByOrderByDate(HttpServletRequest request);
+    ResponseEntity<List<IngredientTransaction>> findAllByTransactionId(String transactionId, HttpServletRequest request);
 }

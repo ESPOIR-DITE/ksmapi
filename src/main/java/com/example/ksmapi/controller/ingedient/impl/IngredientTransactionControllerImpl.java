@@ -107,4 +107,13 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
+    @GetMapping("find-all-by-transaction-is")
+    @Override
+    public ResponseEntity<List<IngredientTransaction>> findAllByTransactionId(@RequestParam("transactionId") String transactionId, HttpServletRequest request) {
+        List<IngredientTransaction> result = service.findAllByTransactionId(transactionId);
+        if(result!=null)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
 }

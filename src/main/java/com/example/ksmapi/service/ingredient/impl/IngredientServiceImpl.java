@@ -43,4 +43,8 @@ public class IngredientServiceImpl implements ServiceInterface<Ingredient,String
     public List<Ingredient> readAll() {
         return Repository.findAll();
     }
+    public void removeTable(){
+         Repository.deleteAll();
+    }
+
 }

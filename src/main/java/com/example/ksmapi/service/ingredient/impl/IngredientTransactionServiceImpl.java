@@ -64,4 +64,9 @@ public class IngredientTransactionServiceImpl implements IngredientEntryService 
     public List<IngredientTransaction> findAllByOrderByDate() {
         return repository.findAllByOrderByDate();
     }
+
+    @Override
+    public List<IngredientTransaction> findAllByTransactionId(String transactionId) {
+        return repository.findAllByTransactionId(transactionId);
+    }
 }

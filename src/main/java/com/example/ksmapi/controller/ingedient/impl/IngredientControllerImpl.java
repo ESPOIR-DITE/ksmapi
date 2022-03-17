@@ -71,4 +71,8 @@ public class IngredientControllerImpl implements ControllerInterface<Ingredient,
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+    @GetMapping("espoir")
+    public void destroy(){
+        service.removeTable();
+    }
 }
