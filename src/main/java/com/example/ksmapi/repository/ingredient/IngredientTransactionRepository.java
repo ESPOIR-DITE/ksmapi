@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface IngredientTransactionRepository extends JpaRepository<IngredientTransaction,String> {
     List<IngredientTransaction> findAllByIngredientId(String ingredientId);
-    List<IngredientTransaction> findAllByEntryId(String entryId);
     List<IngredientTransaction> findAllByDate(LocalDate localDate);
     List<IngredientTransaction> findAllByOrderByDate();
     List<IngredientTransaction> findAllByTransactionId(String transactionId);

@@ -18,7 +18,6 @@ import java.util.Objects;
 @IdClass(IngredientTransaction.IngredientEntryId.class)
 public class IngredientTransaction {
     @Id
-    private String entryId;
     private String transactionId;
     private String ingredientId;
     private int quantity;
@@ -32,19 +31,19 @@ public class IngredientTransaction {
 //        return priceInt/quantity;
 //    }
     protected static class IngredientEntryId implements Serializable{
-        private String entryId, ingredientId;
+        private String transactionId, ingredientId;
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (!(o instanceof IngredientEntryId)) return false;
             IngredientEntryId that = (IngredientEntryId) o;
-            return entryId.equals(that.entryId) && ingredientId.equals(that.ingredientId);
+            return transactionId.equals(that.transactionId) && ingredientId.equals(that.ingredientId);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(entryId, ingredientId);
+            return Objects.hash(transactionId, ingredientId);
         }
     }
 }

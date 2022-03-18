@@ -27,10 +27,10 @@ public class IngredientTransactionFactory {
                 .expirationDate(ie.getExpirationDate())
                 .build();
     }
-    public IngredientTransaction getIngredientEntry(String entryId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
-        if(ingredientId.equals("")&&entryId.equals("")&&price==0.0&&quantity==0) return null;
+    public IngredientTransaction getIngredientEntry(String transactionId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
+        if(ingredientId.equals("")&&transactionId.equals("")&&price==0.0&&quantity==0) return null;
         return IngredientTransaction.builder()
-                .transactionId(entryId)
+                .transactionId(transactionId)
                 .ingredientId(ingredientId)
                 .brand(brand)
                 .price(price)

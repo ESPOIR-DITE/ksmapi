@@ -52,8 +52,9 @@ public class IngredientTransactionServiceImpl implements IngredientEntryService 
 
     @Override
     public List<IngredientTransaction> findAllByEntryId(String entryId) {
-        return repository.findAllByEntryId(entryId);
+        return null;
     }
+
 
     @Override
     public List<IngredientTransaction> findAllByDate(LocalDate localDate) {
