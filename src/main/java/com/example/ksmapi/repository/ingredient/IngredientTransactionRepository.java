@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -14,4 +15,7 @@ public interface IngredientTransactionRepository extends JpaRepository<Ingredien
     List<IngredientTransaction> findAllByOrderByDate();
     List<IngredientTransaction> findAllByTransactionId(String transactionId);
     IngredientTransaction findByTransactionIdAndIngredientId(String transactionId, String IngredientId);
+    IngredientTransaction readByDateAfterAndIngredientId(Date date, String ingredientId);
+    IngredientTransaction readByIngredientId(String ingredientId);
+
 }

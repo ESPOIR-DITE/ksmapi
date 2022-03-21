@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,5 +80,14 @@ public class IngredientTransactionServiceImpl implements IngredientEntryService 
             return true;
         }
         return false;
+    }
+
+    @Override
+    public IngredientTransaction readByIngredientId(String ingredientId) {
+        return repository.readByIngredientId(ingredientId);
+    }
+
+    public IngredientTransaction readByDateNearAndIngredientId(Date date, String ingredientId){
+        return repository.readByDateAfterAndIngredientId(date,ingredientId);
     }
 }

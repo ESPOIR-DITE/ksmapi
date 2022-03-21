@@ -39,4 +39,5 @@ public class IngredientTransactionFactory {
                 .date(date)
                 .build();
     }
+
 }

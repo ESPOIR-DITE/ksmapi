@@ -3,8 +3,11 @@ package com.example.ksmapi.controller.ingedient.impl;
 import com.example.ksmapi.controller.ingedient.IngredientTransactionController;
 import com.example.ksmapi.controller.util.ResponseDeal;
 import com.example.ksmapi.domain.ingredient.IngredientTransaction;
+import com.example.ksmapi.domain.stock.StockHistory;
 import com.example.ksmapi.factory.ingredient.IngredientTransactionFactory;
+import com.example.ksmapi.factory.stock.StockHistoryFactory;
 import com.example.ksmapi.service.ingredient.impl.IngredientTransactionServiceImpl;
+import com.example.ksmapi.service.stock.StockHistoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 @RestController
 @CrossOrigin(origins="http://localhost:1338")
@@ -20,22 +24,44 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     private IngredientTransactionServiceImpl service;
     private IngredientTransactionFactory factory;
     private final ResponseDeal responseDeal;
+    private StockHistoryService stockHistoryService;
+    private StockHistoryFactory stockHistoryFactory;
 
-    @Autowired
-    public IngredientTransactionControllerImpl(ResponseDeal responseDeal,IngredientTransactionServiceImpl service, IngredientTransactionFactory factory) {
+    public IngredientTransactionControllerImpl(IngredientTransactionServiceImpl service, IngredientTransactionFactory factory, ResponseDeal responseDeal, StockHistoryService stockHistoryService, StockHistoryFactory stockHistoryFactory) {
         this.service = service;
         this.factory = factory;
         this.responseDeal = responseDeal;
+        this.stockHistoryService = stockHistoryService;
+        this.stockHistoryFactory = stockHistoryFactory;
     }
 
     @PostMapping("create")
     @Override
     public ResponseEntity<IngredientTransaction> save(@RequestBody IngredientTransaction ingredientTransaction, HttpServletRequest request) {
         IngredientTransaction ingredientTransaction1 = factory.getIngredientEntryObject(ingredientTransaction);
+        IngredientTransaction isExisting = service.readByIngredientId(ingredientTransaction.getIngredientId());
+        if(isExisting!=null){
+            IngredientTransaction result = addAmount(isExisting,ingredientTransaction.getQuantity());
+            if(result!=null) {
+                record(result);
+                return responseDeal.successful(result);
+            }
+            return responseDeal.fail();
+        }
         IngredientTransaction result = service.save(ingredientTransaction1);
-        if(result!=null)
+        if(result!=null) {
+            record(result);
             return responseDeal.successful(result);
+        }
         return responseDeal.fail();
+    }
+    IngredientTransaction addAmount(IngredientTransaction ingredientTransaction,int quantity){
+        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,ingredientTransaction.getPrice(),ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
+        return service.save(ingredientTransaction1);
+    }
+    void record(IngredientTransaction ingredientTransaction){
+        StockHistory result = stockHistoryFactory.getStockHistory(ingredientTransaction.getIngredientId(),new Date(),ingredientTransaction.getQuantity(),ingredientTransaction.getTransactionId());
+        stockHistoryService.save(result);
     }
 
     @PostMapping("update")
@@ -121,6 +147,20 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
     public ResponseEntity<Boolean> deleteByTransactionIdAndIngredientId(@RequestParam("transactionId")String transactionId,@RequestParam("ingredientId") String IngredientId, HttpServletRequest request) {
         Boolean result = service.deleteByTransactionIdAndIngredientId(transactionId, IngredientId);
         if(result)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
+
+    @Override
+    public ResponseEntity<IngredientTransaction> readByIngredientId(String ingredientId, HttpServletRequest request) {
+        return null;
+    }
+
+    @GetMapping("read-recent")
+    public ResponseEntity<IngredientTransaction> readRecent(String ingredientId){
+        Date currentDate = new Date();
+        IngredientTransaction result = service.readByDateNearAndIngredientId(currentDate,ingredientId);
+        if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
