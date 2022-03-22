@@ -56,7 +56,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
         return responseDeal.fail();
     }
     IngredientTransaction addAmount(IngredientTransaction ingredientTransaction,int quantity){
-        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,ingredientTransaction.getPrice(),ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
+        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getId(),ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,ingredientTransaction.getPrice(),ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
         return service.save(ingredientTransaction1);
     }
     void record(IngredientTransaction ingredientTransaction){

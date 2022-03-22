@@ -53,11 +53,11 @@ public class StockHistoryServiceImpl implements StockHistoryService {
 
     @Override
     public List<StockHistory> findAllByTransactionType(String transactionId) {
-        return repository.findAllByTransactionType(transactionId);
+        return repository.findAllByTransactionId(transactionId);
     }
 
     @Override
     public List<StockHistory> findAllByTransactionTypeAndDate(String transactionTypeId, Date date) {
-        return repository.findAllByTransactionTypeAndDate(transactionTypeId,date);
+        return repository.findAllByTransactionIdAndDate(transactionTypeId,date);
     }
 }

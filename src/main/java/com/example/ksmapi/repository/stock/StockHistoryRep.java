@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface StockHistoryRep extends JpaRepository<StockHistory,String> {
     List<StockHistory> findAllByIngredientId(String ingredientId);
-    List<StockHistory> findAllByTransactionType(String transactionId);
-    List<StockHistory> findAllByTransactionTypeAndDate(String transactionTypeId, Date date);
+    List<StockHistory> findAllByTransactionId(String transactionId);
+    List<StockHistory> findAllByTransactionIdAndDate(String transactionTypeId, Date date);
 }

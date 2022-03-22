@@ -41,8 +41,10 @@ public class TransactionApi {
         try {
             for (EntryIngredientPresentation.StockIngredient ingredient : presentation.getIngredientEntry()) {
                     IngredientTransaction ingredientTransaction = ingredientTransactionFactory.getIngredientEntry(
-                            entryId,
-                            ingredient.getIngredient().getId()
+
+                            ingredient.getIngredientTransaction().getId()
+                            , entryId
+                            , ingredient.getIngredient().getId()
                             , ingredient.getIngredientTransaction().getQuantity()
                             , ingredient.getIngredientTransaction().getPrice()
                             , ingredient.getIngredientTransaction().getBrand()

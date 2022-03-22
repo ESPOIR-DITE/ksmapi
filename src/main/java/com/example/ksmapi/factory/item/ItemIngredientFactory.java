@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemIngredientFactory {
     private GenericHelper genericHelper;
-
     @Autowired
     public ItemIngredientFactory(GenericHelper genericHelper) {
         this.genericHelper = genericHelper;
     }
-
     public ItemIngredient getItemIngredient(ItemIngredient ii){
         if(ii.getIngredientId().equals("")&&ii.getEntryId().equals("")&&ii.getQuantity()==0) return null;
         return ItemIngredient.builder()
+                .id(this.genericHelper.getId(ItemIngredientFactory.class))
                 .quantity(ii.getQuantity())
                 .ingredientId(ii.getIngredientId())
                 .entryId(ii.getEntryId())

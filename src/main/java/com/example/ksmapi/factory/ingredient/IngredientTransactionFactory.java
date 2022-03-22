@@ -18,6 +18,7 @@ public class IngredientTransactionFactory {
     public IngredientTransaction getIngredientEntryObject(IngredientTransaction ie){
         if(ie.getIngredientId().equals("")&&ie.getTransactionId().equals("")&&ie.getPrice()==0.0&&ie.getQuantity()==0) return null;
         return IngredientTransaction.builder()
+                .id(this.genericHelper.getId(IngredientTransactionFactory.class))
                 .transactionId(ie.getTransactionId())
                 .ingredientId(ie.getIngredientId())
                 .brand(ie.getBrand())
@@ -27,7 +28,7 @@ public class IngredientTransactionFactory {
                 .expirationDate(ie.getExpirationDate())
                 .build();
     }
-    public IngredientTransaction getIngredientEntry(String transactionId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
+    public IngredientTransaction getIngredientEntry(String id, String transactionId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
         if(ingredientId.equals("")&&transactionId.equals("")&&price==0.0&&quantity==0) return null;
         return IngredientTransaction.builder()
                 .transactionId(transactionId)

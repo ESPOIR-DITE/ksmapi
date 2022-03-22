@@ -5,9 +5,9 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: "jdbc:postgresql://ec2-184-73-243-101.compute-1.amazonaws.com:5432/d1i01haeo99mq9"
-    username: toysintatengjr
-    password: 470d783f6506f8cab19d577b58cff06b10e74c366c5471a6d3b4946fbd6b8ec2
+    url: "jdbc:postgresql://ec2-3-225-213-67.compute-1.amazonaws.com:5432/ddhf92lfo6vlr5"
+    username: ipeplyzzdetjvx
+    password: c211a8cae9a379beff3d37c0b745c31d2e2077d98d7dea88d071f30a3fe833be
     dbcp2:
       remove-abandoned-on-borrow: true
       remove-abandoned-timeout: 60
