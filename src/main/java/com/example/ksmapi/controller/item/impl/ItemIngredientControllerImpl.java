@@ -31,6 +31,7 @@ public class ItemIngredientControllerImpl implements ItemIngredientController {
     @Override
     public ResponseEntity<ItemIngredient> save(@RequestBody ItemIngredient itemIngredient, HttpServletRequest request) {
         ItemIngredient itemIngredientObject = factory.getItemIngredient(itemIngredient);
+        System.out.println(itemIngredientObject.getId());
         ItemIngredient result = service.save(itemIngredientObject);
         if(result!=null)
             return responseDeal.successful(result);

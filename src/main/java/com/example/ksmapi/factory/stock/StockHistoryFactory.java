@@ -20,6 +20,7 @@ public class StockHistoryFactory {
         return StockHistory.builder()
                 .id(this.genericHelper.getId(StockHistoryFactory.class))
                 .date(date)
+                .movingQuantity(movingQuantity)
                 .transactionId(transactionType)
                 .ingredientId(ingredientId)
                 .build();

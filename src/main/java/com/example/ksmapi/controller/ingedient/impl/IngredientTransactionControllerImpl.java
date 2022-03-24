@@ -41,6 +41,8 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
         IngredientTransaction ingredientTransaction1 = factory.getIngredientEntryObject(ingredientTransaction);
         IngredientTransaction isExisting = service.readByIngredientId(ingredientTransaction.getIngredientId());
         if(isExisting!=null){
+            service.delete(isExisting.getId());
+            System.out.println(isExisting.toString());
             IngredientTransaction result = addAmount(isExisting,ingredientTransaction.getQuantity());
             if(result!=null) {
                 record(result);

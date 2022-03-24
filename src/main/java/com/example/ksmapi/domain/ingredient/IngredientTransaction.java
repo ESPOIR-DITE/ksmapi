@@ -13,6 +13,7 @@ import java.util.Objects;
 @Entity
 @Builder
 @Getter
+@ToString
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class IngredientTransaction {
