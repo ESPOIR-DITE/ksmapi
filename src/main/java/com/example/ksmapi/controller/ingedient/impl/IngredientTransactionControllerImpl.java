@@ -43,7 +43,8 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
         if(isExisting!=null){
             service.delete(isExisting.getId());
             System.out.println(isExisting.toString());
-            IngredientTransaction result = addAmount(isExisting,ingredientTransaction.getQuantity());
+
+            IngredientTransaction result = addAmount(isExisting,ingredientTransaction.getQuantity(),getCurrentPricePerUnit(isExisting.getPrice(),isExisting.getQuantity(),ingredientTransaction.getPrice(),ingredientTransaction.getQuantity()));
             if(result!=null) {
                 record(result);
                 return responseDeal.successful(result);
@@ -57,8 +58,11 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
         }
         return responseDeal.fail();
     }
-    IngredientTransaction addAmount(IngredientTransaction ingredientTransaction,int quantity){
-        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getId(),ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,ingredientTransaction.getPrice(),ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
+    double getCurrentPricePerUnit(double oldPrice, int oldQuantity,double newPrice, int newQuantity){
+        return (oldPrice+newPrice)/(oldQuantity+newQuantity);
+    }
+    IngredientTransaction addAmount(IngredientTransaction ingredientTransaction,int quantity, double price){
+        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getId(),ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,price,ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
         return service.save(ingredientTransaction1);
     }
     void record(IngredientTransaction ingredientTransaction){
