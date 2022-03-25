@@ -62,7 +62,7 @@ public class IngredientTransactionControllerImpl implements IngredientTransactio
         return (oldPrice+newPrice)/(oldQuantity+newQuantity);
     }
     IngredientTransaction addAmount(IngredientTransaction ingredientTransaction,int quantity, double price){
-        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getId(),ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),quantity,price,ingredientTransaction.getTransactionId(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
+        IngredientTransaction ingredientTransaction1 = factory.getIngredientEntry(ingredientTransaction.getId(),ingredientTransaction.getTransactionId(),ingredientTransaction.getIngredientId(),ingredientTransaction.getQuantity()+quantity,price,ingredientTransaction.getBrand(),ingredientTransaction.getDate(),ingredientTransaction.getExpirationDate());
         return service.save(ingredientTransaction1);
     }
     void record(IngredientTransaction ingredientTransaction){

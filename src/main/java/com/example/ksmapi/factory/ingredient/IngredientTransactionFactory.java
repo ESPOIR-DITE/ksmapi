@@ -31,6 +31,7 @@ public class IngredientTransactionFactory {
     public IngredientTransaction getIngredientEntry(String id, String transactionId, String ingredientId, int quantity, double price, String brand, LocalDate date, LocalDate expirationDate){
         if(ingredientId.equals("")&&transactionId.equals("")&&price==0.0&&quantity==0) return null;
         return IngredientTransaction.builder()
+                .id(id)
                 .transactionId(transactionId)
                 .ingredientId(ingredientId)
                 .brand(brand)
