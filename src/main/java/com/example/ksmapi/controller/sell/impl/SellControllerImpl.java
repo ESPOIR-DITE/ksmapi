@@ -1,5 +1,6 @@
 package com.example.ksmapi.controller.sell.impl;
 
+import com.example.ksmapi.api.sell.SellApi;
 import com.example.ksmapi.controller.sell.SellController;
 import com.example.ksmapi.controller.util.ResponseDeal;
 import com.example.ksmapi.domain.sell.Sell;
@@ -20,19 +21,20 @@ public class SellControllerImpl implements SellController {
     private final SellService service;
     private final SellFactory factory;
     private final ResponseDeal responseDeal;
+    private final SellApi sellApi;
 
-    @Autowired
-    public SellControllerImpl(SellService service, SellFactory factory, ResponseDeal responseDeal) {
+    public SellControllerImpl(SellService service, SellFactory factory, ResponseDeal responseDeal, SellApi sellApi) {
         this.service = service;
         this.factory = factory;
         this.responseDeal = responseDeal;
+        this.sellApi = sellApi;
     }
 
     @PostMapping("create")
     @Override
     public ResponseEntity<Sell> save(@RequestBody Sell sell, HttpServletRequest request) {
         Sell object = factory.getSell(sell);
-        Sell result = service.save(object);
+        Sell result = sellApi.sell(object);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

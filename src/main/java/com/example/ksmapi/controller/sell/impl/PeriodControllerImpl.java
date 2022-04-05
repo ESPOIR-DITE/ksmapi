@@ -1,69 +1,71 @@
-package com.example.ksmapi.controller.item.impl;
+package com.example.ksmapi.controller.sell.impl;
 
 import com.example.ksmapi.controller.ControllerInterface;
 import com.example.ksmapi.controller.util.ResponseDeal;
-import com.example.ksmapi.domain.sell.BuyerType;
-import com.example.ksmapi.factory.sell.BuyerTypeFactory;
-import com.example.ksmapi.service.item.impl.BuyerTypeServiceImpl;
+import com.example.ksmapi.domain.sell.Period;
+import com.example.ksmapi.factory.sell.PeriodFactory;
+import com.example.ksmapi.service.sell.PeriodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 @RestController
 @CrossOrigin(origins="http://localhost:1338")
-@RequestMapping("/ksm/buyer-type/")
-public class BuyerTypeControllerImpl implements ControllerInterface<BuyerType, String> {
-    private final BuyerTypeFactory factory;
-    private final BuyerTypeServiceImpl service;
+@RequestMapping("/ksm/period/")
+public class PeriodControllerImpl implements ControllerInterface<Period,String> {
+    private final PeriodService service;
+    private final PeriodFactory factory;
     private final ResponseDeal responseDeal;
-
     @Autowired
-    public BuyerTypeControllerImpl(BuyerTypeFactory factory, BuyerTypeServiceImpl service, ResponseDeal responseDeal) {
-        this.factory = factory;
+    public PeriodControllerImpl(PeriodService service, PeriodFactory factory,ResponseDeal responseDeal) {
         this.service = service;
+        this.factory = factory;
         this.responseDeal = responseDeal;
     }
 
     @PostMapping("create")
     @Override
-    public ResponseEntity<BuyerType> save(@RequestBody BuyerType buyerType, HttpServletRequest request) {
-        BuyerType object = factory.getBuyer(buyerType);
-        BuyerType result = service.save(object);
+    public ResponseEntity<Period> save(@RequestBody Period period, HttpServletRequest request) {
+        Period period1 = factory.getPeriodObject(period.getPeriod(),period.getDescription());
+        Period result = service.save(period1);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
     @PostMapping("update")
     @Override
-    public ResponseEntity<BuyerType> update(@RequestBody BuyerType buyerType, HttpServletRequest request) {
-        BuyerType result = service.save(buyerType);
+    public ResponseEntity<Period> update(@RequestBody Period period, HttpServletRequest request) {
+        Period result = service.save(period);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
     @GetMapping("read")
     @Override
-    public ResponseEntity<BuyerType> read(@RequestParam("id") String id, HttpServletRequest request) {
-        BuyerType result = service.read(id);
+    public ResponseEntity<Period> read(@RequestParam("id") String id, HttpServletRequest request) {
+        Period result = service.read(id);
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
     @GetMapping("delete")
     @Override
     public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
-        boolean result = service.delete(id);
+        Boolean result = service.delete(id);
         if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
     @GetMapping("reads")
     @Override
-    public ResponseEntity<List<BuyerType>> readAll(HttpServletRequest request) {
-        List<BuyerType> result = service.readAll();
+    public ResponseEntity<List<Period>> readAll(HttpServletRequest request) {
+       List<Period> result = service.readAll();
         if(result!=null)
             return responseDeal.successful(result);
         return responseDeal.fail();

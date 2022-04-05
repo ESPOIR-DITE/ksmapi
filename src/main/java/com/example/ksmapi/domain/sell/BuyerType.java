@@ -1,4 +1,4 @@
-package com.example.ksmapi.domain.item;
+package com.example.ksmapi.domain.sell;
 
 import lombok.*;
 
@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BuyerType {
     @Id
-    private String Id;
+    private String id;
     private String name;
+    private String description;
 }

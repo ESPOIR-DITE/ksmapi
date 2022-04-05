@@ -1,6 +1,6 @@
-package com.example.ksmapi.factory.item;
+package com.example.ksmapi.factory.sell;
 
-import com.example.ksmapi.domain.item.BuyerType;
+import com.example.ksmapi.domain.sell.BuyerType;
 import com.example.ksmapi.util.GenericHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class BuyerTypeFactory {
     public BuyerType getBuyer(BuyerType buyerType){
         if(buyerType.getName().equals("")) return null;
         return BuyerType.builder()
-                .Id(genericHelper.getId(BuyerTypeFactory.class))
+                .id(genericHelper.getId(BuyerTypeFactory.class))
                 .name(buyerType.getName())
                 .build();
     }

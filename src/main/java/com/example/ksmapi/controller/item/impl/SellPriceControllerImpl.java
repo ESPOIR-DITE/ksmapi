@@ -3,7 +3,7 @@ package com.example.ksmapi.controller.item.impl;
 import com.example.ksmapi.controller.item.SellPriceController;
 import com.example.ksmapi.controller.util.ResponseDeal;
 import com.example.ksmapi.domain.sell.SellPrice;
-import com.example.ksmapi.factory.item.SellPriceFactory;
+import com.example.ksmapi.factory.sell.SellPriceFactory;
 import com.example.ksmapi.service.item.SellPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

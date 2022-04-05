@@ -1,7 +1,7 @@
 package com.example.ksmapi.service.item.impl;
 
 import com.example.ksmapi.domain.sell.SellPrice;
-import com.example.ksmapi.repository.item.SellPriceRepository;
+import com.example.ksmapi.repository.sell.SellPriceRepository;
 import com.example.ksmapi.service.item.SellPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

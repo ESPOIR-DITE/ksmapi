@@ -1,7 +1,8 @@
 package com.example.ksmapi.service.item.impl;
 
-import com.example.ksmapi.domain.item.BuyerType;
-import com.example.ksmapi.repository.item.BuyerTypeRepository;
+
+import com.example.ksmapi.domain.sell.BuyerType;
+import com.example.ksmapi.repository.sell.BuyerTypeRepository;
 import com.example.ksmapi.service.ServiceInterface;
 import org.springframework.stereotype.Service;
 

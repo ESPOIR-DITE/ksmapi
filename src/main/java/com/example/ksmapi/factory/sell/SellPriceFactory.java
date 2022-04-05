@@ -1,4 +1,4 @@
-package com.example.ksmapi.factory.item;
+package com.example.ksmapi.factory.sell;
 
 import com.example.ksmapi.domain.sell.SellPrice;
 import com.example.ksmapi.util.GenericHelper;

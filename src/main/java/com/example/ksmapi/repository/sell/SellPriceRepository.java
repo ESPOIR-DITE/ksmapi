@@ -1,4 +1,4 @@
-package com.example.ksmapi.repository.item;
+package com.example.ksmapi.repository.sell;
 
 import com.example.ksmapi.domain.sell.SellPrice;
 import org.springframework.data.jpa.repository.JpaRepository;

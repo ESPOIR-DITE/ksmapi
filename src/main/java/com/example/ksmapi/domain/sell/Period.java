@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDate;
-import java.util.Date;
 
 @ToString
 @Builder
@@ -13,13 +11,9 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Sell {
+public class Period {
     @Id
     private String id;
-    private String customerId;
-    private String buyerTypeId;
-    private double price;
-    private String itemId;
-    private int quantity;
-    private Date date; //Todo Should be localDate
+    private String period;
+    private String description;
 }

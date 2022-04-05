@@ -1,6 +1,6 @@
-package com.example.ksmapi.repository.item;
+package com.example.ksmapi.repository.sell;
 
-import com.example.ksmapi.domain.item.BuyerType;
+import com.example.ksmapi.domain.sell.BuyerType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
