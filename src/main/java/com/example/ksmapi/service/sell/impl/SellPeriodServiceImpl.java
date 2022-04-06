@@ -4,6 +4,7 @@ import com.example.ksmapi.domain.sell.SellPeriod;
 import com.example.ksmapi.repository.sell.SellPeriodRepository;
 import com.example.ksmapi.service.sell.SellPeriodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class SellPeriodServiceImpl implements SellPeriodService {
 
     @Override
     public List<SellPeriod> readAll() {
-        return repository.findAll();
+        return repository.findAll(Sort.by("date").descending());
     }
 
     @Override

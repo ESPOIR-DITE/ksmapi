@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @ToString
 @Builder
@@ -17,5 +18,6 @@ public class SellPeriod {
     private String periodId;
     private String sellId;
     private double amount;
+    private Date date;
     private String description;
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SellPeriodRepository extends JpaRepository<SellPeriod,String> {
     List<SellPeriod> findAllByPeriodId(String periodId);
+    SellPeriod readByPeriodIdAndDateIsNear(String s);
 }

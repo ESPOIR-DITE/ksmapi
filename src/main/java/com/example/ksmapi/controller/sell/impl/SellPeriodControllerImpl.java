@@ -29,7 +29,7 @@ public class SellPeriodControllerImpl implements SellPeriodController {
     @PostMapping("create")
     @Override
     public ResponseEntity<SellPeriod> save(@RequestBody SellPeriod sellPeriod, HttpServletRequest request) {
-       SellPeriod object = factory.getSellPeriod(sellPeriod.getPeriodId(),sellPeriod.getSellId(),sellPeriod.getAmount(),sellPeriod.getDescription());
+       SellPeriod object = factory.getSellPeriod(sellPeriod.getPeriodId(),sellPeriod.getSellId(),sellPeriod.getAmount(),sellPeriod.getDescription(),sellPeriod.getDate());
        SellPeriod result = service.save(object);
         if(result!=null)
             return responseDeal.successful(result);
