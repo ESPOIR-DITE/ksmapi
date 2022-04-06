@@ -54,14 +54,16 @@ public class SellPeriodControllerImpl implements SellPeriodController {
         return responseDeal.fail();
     }
 
+    @GetMapping("delete")
     @Override
-    public ResponseEntity<Boolean> delete(String id, HttpServletRequest request) {
+    public ResponseEntity<Boolean> delete(@RequestParam("id") String id, HttpServletRequest request) {
         Boolean result = service.delete(id);
         if(result)
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
 
+    @GetMapping("reads")
     @Override
     public ResponseEntity<List<SellPeriod>> readAll(HttpServletRequest request) {
         List<SellPeriod> result = service.readAll();
@@ -70,8 +72,9 @@ public class SellPeriodControllerImpl implements SellPeriodController {
         return responseDeal.fail();
     }
 
+    @GetMapping("find-all-by-period")
     @Override
-    public ResponseEntity<List<SellPeriod>> findAllByPeriodId(String periodId, HttpServletRequest request) {
+    public ResponseEntity<List<SellPeriod>> findAllByPeriodId(@RequestParam("period") String periodId, HttpServletRequest request) {
         List<SellPeriod> result = service.findAllByPeriodId(periodId);
         if(result!=null)
             return responseDeal.successful(result);
