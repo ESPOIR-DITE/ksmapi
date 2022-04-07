@@ -38,6 +38,9 @@ public class PeriodServiceImpl implements PeriodService {
         }
         return false;
     }
+    public Period readByName(String name){
+        return repository.readByPeriod(name);
+    }
 
     @Override
     public List<Period> readAll() {
