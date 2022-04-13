@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class SellPriceFactory {
     private GenericHelper genericHelper;
+
+    public SellPriceFactory(GenericHelper genericHelper) {
+        this.genericHelper = genericHelper;
+    }
+
     public SellPrice getSellPrice(SellPrice sp){
         if(sp.getPrice()==0.0&&sp.getBuyerTypeId().equals("")&&sp.getItemId().equals("")) return null;
         return SellPrice.builder()
