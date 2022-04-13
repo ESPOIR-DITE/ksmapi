@@ -13,4 +13,6 @@ public interface SellPriceController extends ControllerInterface<SellPrice,Strin
     ResponseEntity<List<SellPrice>> findAllByBuyerTYpeIdAndIsActive(String buyerId,boolean isActive,HttpServletRequest request);
     ResponseEntity<List<SellPrice>> findAllByItemIdAndIsActive(String buyerId,boolean isActive, HttpServletRequest request);
     ResponseEntity<List<SellPrice>> findAllByItemIdAndBuyerTYpeId(String itemId,String buyerId, HttpServletRequest request);
+    ResponseEntity<SellPrice> findAllByItemIdAndBuyerTypeIdAndDateIsNearAndIsActive(String itemId,String buyerId,HttpServletRequest request);
+    ResponseEntity<List<SellPrice>> findAllByItemId(String itemId,HttpServletRequest request);
 }

@@ -102,4 +102,21 @@ public class SellPriceControllerImpl implements SellPriceController {
             return responseDeal.successful(result);
         return responseDeal.fail();
     }
+
+    @GetMapping("find-by-item-and-buyer-type")
+    @Override
+    public ResponseEntity<SellPrice> findAllByItemIdAndBuyerTypeIdAndDateIsNearAndIsActive(@RequestParam("itemId") String itemId, @RequestParam("buyerId") String buyerId, HttpServletRequest request) {
+        SellPrice result = service.findAllByItemIdAndBuyerTypeIdAndDateIsNearAndIsActive(itemId, buyerId);
+        if(result!=null)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
+    @GetMapping("find-all-by-item-id")
+    @Override
+    public ResponseEntity<List<SellPrice>> findAllByItemId(@RequestParam("itemId") String itemId, HttpServletRequest request) {
+        List<SellPrice> result = service.findAllByItemId(itemId);
+        if(result!=null)
+            return responseDeal.successful(result);
+        return responseDeal.fail();
+    }
 }

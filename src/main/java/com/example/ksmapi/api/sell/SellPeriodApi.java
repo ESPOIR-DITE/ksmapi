@@ -40,11 +40,34 @@ public class SellPeriodApi {
     private void createDailySellPeriodTask(){
         Period period = periodService.readByName(PeriodEnum.DAILY.VALUE);
         if(period!=null){
-            PeriodTask periodTask = periodTaskFactory.getPeriodTaskObject(period.getPeriod(),new Date(), LocalDate.now(),"auto created in Daily task");
+            PeriodTask periodTask = periodTaskFactory.getPeriodTaskObject(period.getId(),new Date(), LocalDate.now(),"auto created in Daily task");
             periodTaskService.save(periodTask);
-            System.out.println(new Date()+"  created Period Task");
+            System.out.println(new Date()+"  created Daily Period Task");
         }else{
-            System.out.println(new Date()+"  could not create Period Task");
+            System.out.println(new Date()+"  could not create Daily Period Task");
+        }
+    }
+    //Todo we should link all of the tasks of this week into a weekPeriodTask.
+    @Scheduled(fixedDelay = 7,timeUnit = TimeUnit.DAYS)
+    private void createWeeklySellPeriodTask(){
+        Period period = periodService.readByName(PeriodEnum.WEEKLY.VALUE);
+        if(period!=null){
+            PeriodTask periodTask = periodTaskFactory.getPeriodTaskObject(period.getId(),new Date(), LocalDate.now(),"auto created in Weekly task");
+            periodTaskService.save(periodTask);
+            System.out.println(new Date()+"  created Weekly Period Task");
+        }else{
+            System.out.println(new Date()+"  could not create Weekly Period Task");
+        }
+    }
+    @Scheduled(fixedDelay = 30,timeUnit = TimeUnit.DAYS)
+    private void createMonthlySellPeriodTask(){
+        Period period = periodService.readByName(PeriodEnum.MONTHLY.VALUE);
+        if(period!=null){
+            PeriodTask periodTask = periodTaskFactory.getPeriodTaskObject(period.getId(),new Date(), LocalDate.now(),"auto created in Weekly task");
+            periodTaskService.save(periodTask);
+            System.out.println(new Date()+"  created Weekly Period Task");
+        }else{
+            System.out.println(new Date()+"  could not create Weekly Period Task");
         }
     }
 }

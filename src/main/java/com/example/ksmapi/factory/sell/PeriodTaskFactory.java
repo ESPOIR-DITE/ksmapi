@@ -17,6 +17,14 @@ public class PeriodTaskFactory {
     public PeriodTaskFactory(GenericHelper genericHelper) {
         this.genericHelper = genericHelper;
     }
+    public PeriodTask getPeriodTaskObject(String id,String period, Date date, LocalDate time, String description){
+        return PeriodTask.builder()
+                .id(id)
+                .date(date)
+                .time(time)
+                .period(period)
+                .description(description).build();
+    }
 
     public PeriodTask getPeriodTaskObject(String period, Date date, LocalDate time, String description){
         return PeriodTask.builder()
@@ -25,5 +33,13 @@ public class PeriodTaskFactory {
                 .time(time)
                 .period(period)
                 .description(description).build();
+    }
+    public PeriodTask getPeriodTask(PeriodTask periodTask){
+        return PeriodTask.builder()
+                .id(periodTask.getId())
+                .date(periodTask.getDate())
+                .time(periodTask.getTime())
+                .period(periodTask.getPeriod())
+                .description(periodTask.getDescription()).build();
     }
 }

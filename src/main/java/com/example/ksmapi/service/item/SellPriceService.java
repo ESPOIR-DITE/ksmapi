@@ -11,4 +11,7 @@ public interface SellPriceService extends ServiceInterface<SellPrice,String> {
     List<SellPrice> findAllByBuyerTYpeIdAndIsActive(String buyerId,boolean isActive);
     List<SellPrice> findAllByItemIdAndIsActive(String buyerId,boolean isActive);
     List<SellPrice> findAllByItemIdAndBuyerTYpeId(String itemId,String buyerId);
+    SellPrice findAllByItemIdAndBuyerTypeIdAndDateIsNearAndIsActive(String itemId,String buyerId);
+    List<SellPrice> findAllByItemId(String itemId);
+
 }

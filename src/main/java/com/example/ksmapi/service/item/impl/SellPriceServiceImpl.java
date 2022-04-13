@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +64,15 @@ public class SellPriceServiceImpl implements SellPriceService {
     @Override
     public List<SellPrice> findAllByItemIdAndBuyerTYpeId(String itemId, String buyerId) {
         return repository.findAllByItemIdAndBuyerTypeId(itemId, buyerId);
+    }
+
+    @Override
+    public SellPrice findAllByItemIdAndBuyerTypeIdAndDateIsNearAndIsActive(String itemId, String buyerId) {
+        return repository.findAllByItemIdAndBuyerTypeIdAndIsActive(itemId,buyerId,true);
+    }
+
+    @Override
+    public List<SellPrice> findAllByItemId(String itemId) {
+        return repository.findAllByItemId(itemId);
     }
 }
